@@ -7,7 +7,7 @@ package Enum;
 
 /**
  *
- * @author User
+ * @author Juan
  */
 public enum Estado {
     DISPONIBLE,OCUPADO;
