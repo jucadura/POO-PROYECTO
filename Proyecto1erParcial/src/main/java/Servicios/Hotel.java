@@ -24,7 +24,7 @@ public class Hotel extends Hospedaje{
     public Hotel() {
     }
 
-    public Hotel(String codigo, String nombre, int rating, boolean desayuno, boolean parqueo, boolean cancelacionGratis,Date fechaInicio, Date fechaFin) {
+    public Hotel(String codigo, String nombre, int rating, boolean desayuno, boolean parqueo, boolean cancelacionGratis,LocalDate fechaInicio, LocalDate fechaFin) {
         super(fechaInicio, fechaFin);
         this.codigo = codigo;
         this.nombre = nombre;
@@ -89,6 +89,51 @@ public class Hotel extends Hospedaje{
     public void setHabitaciones(ArrayList<Habitacion> habitaciones) {
         this.habitaciones = habitaciones;
     }
-   
+    @Override
+    public void mostrarInfo(){
+        String stars="";
+        for(int i=0; i<this.rating;i++){
+            stars+="*";
+        }
+        System.out.println("Datos del"+this.nombre+"\n/*******************/\nDirección: "+this.direccion+"\nEstrellas: "+stars+"\nIncluye Desayuno: "+Sistema.booleanoInfo(this.desayuno)+"\nIncluye Parqueo: "+Sistema.booleanoInfo(parqueo)+"\nPermite cancelacion gratis: "+Sistema.booleanoInfo(this.cancelacionGratis)+"/*******************/");
+    }
     
+    public void buscarHabitaciones(){
+        ArrayList<Habitacion> habs = new ArrayList<>();
+        ArrayList<String> lineas = LeeFichero("habitaciones.txt");
+        for (int i=1; i<lineas.size();i++){
+            String[] line = lineas.get(i).split(",");
+            if (line[0].equals(codigo)){
+                Habitacion hab = new Habitacion(line[0],TipoHabitacion.valueOf(line[1]),Double.valueOf(line[2]),Integer.valueOf(line[3]),line[4],Estado.valueOf(line[5]));
+                habs.add(hab);
+            }
+        }
+        this.setHabitaciones(habs);
+    }
+    
+    public ArrayList<Habitacion> habitacionesDisponibles(TipoHabitacion tipo){
+        ArrayList<Habitacion> disp = new ArrayList<>();
+        for (int i =0; i<this.habitaciones.size();i++){
+            if(this.habitaciones.get(i).getEstado()==Estado.DISPONIBLE && this.habitaciones.get(i).getTipo()==tipo)
+                disp.add(this.habitaciones.get(i));
+        }
+        return disp;
+    }
+    
+    public void mostrarTipo(){
+        double ind=0;
+        double dob=0;
+        double fam=0;
+        for(int i=0; i<this.habitaciones.size();i++){
+            Habitacion hab = this.habitaciones.get(i);
+            if(hab.getTipo()==TipoHabitacion.INDIVIDUAL)
+                ind = hab.getPrecio();
+            else if (hab.getTipo()==TipoHabitacion.DOBLE)
+                dob = hab.getPrecio();
+            else fam = hab.getPrecio();           
+        }
+        System.out.println("1.- Individual - 1 persona - "+ind+"\n2.- Doble - 2 personas - "+dob+"\n3.- Familiar - 4 personas -"+fam);
+    }
 }
+    
+
