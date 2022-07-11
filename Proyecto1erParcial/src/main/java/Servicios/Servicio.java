@@ -9,7 +9,7 @@ package Servicios;
  *
  * @author User
  */
-public class Servicio {
+public abstract class Servicio {
     protected String ciudad;
     protected String id;
     protected int puntuacion;
@@ -53,6 +53,7 @@ public class Servicio {
     public void setValor(int valor) {
         this.valor = valor;
     }
+    public abstract void mostrarInfo();
 
     public void reservar(){
         //falta
