@@ -12,7 +12,7 @@ import java.util.Date;
  *
  * @author User
  */
-public class Hospedaje {
+public class Hospedaje extends Servicio {
     protected LocalDate fechaInicio;
     protected LocalDate fechaFin;
 
@@ -23,7 +23,8 @@ public class Hospedaje {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
     }
-     @Override
+
+    @Override
     public String toString() {
         return "Hospedaje{" + "fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + '}';
     }
@@ -33,16 +34,6 @@ public class Hospedaje {
     }
 
     
-    public Reserva generarReserva(Cliente c,LocalDate fechaInicio, LocalDate fechaFinal,int valor){
-        this.setValor(valor);
-        Date date = new Date();  
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
-        String strDate = formatter.format(date);  
-        System.out.println(strDate);
-        Reserva r = new Reserva(this.getId(),c,TipoServicio.HOSPEDAJE,fechaInicio,fechaFinal);        
-        String resStr = r.getCodigo()+","+strDate+","+TipoServicio.HOSPEDAJE.toString().toLowerCase()+","+r.getCliente().getNombre()+","+this.valor;
-        EscribirArchivo("reservas.txt",resStr);
-        return r;
-    }
+    
     
 }
