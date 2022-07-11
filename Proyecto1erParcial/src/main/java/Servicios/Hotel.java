@@ -15,6 +15,7 @@ import java.util.Date;
 public class Hotel extends Hospedaje{
     private String codigo;
     private String nombre;
+    private String direccion;
     private int rating;
     private boolean desayuno;
     private boolean parqueo;
@@ -24,14 +25,23 @@ public class Hotel extends Hospedaje{
     public Hotel() {
     }
 
-    public Hotel(String codigo, String nombre, int rating, boolean desayuno, boolean parqueo, boolean cancelacionGratis,LocalDate fechaInicio, LocalDate fechaFin) {
+    public Hotel(String codigo, String nombre, int rating, String direccion, boolean desayuno, boolean parqueo, boolean cancelacionGratis,LocalDate fechaInicio, LocalDate fechaFin) {
         super(fechaInicio, fechaFin);
         this.codigo = codigo;
         this.nombre = nombre;
+        this.direccion = direccion;
         this.rating = rating;
         this.desayuno = desayuno;
         this.parqueo = parqueo;
         this.cancelacionGratis = cancelacionGratis;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
     public String getCodigo() {
@@ -89,13 +99,15 @@ public class Hotel extends Hospedaje{
     public void setHabitaciones(ArrayList<Habitacion> habitaciones) {
         this.habitaciones = habitaciones;
     }
+   
+    
     @Override
     public void mostrarInfo(){
         String stars="";
         for(int i=0; i<this.rating;i++){
             stars+="*";
         }
-        System.out.println("Datos del"+this.nombre+"\n/*******************/\nDirección: "+this.direccion+"\nEstrellas: "+stars+"\nIncluye Desayuno: "+Sistema.booleanoInfo(this.desayuno)+"\nIncluye Parqueo: "+Sistema.booleanoInfo(parqueo)+"\nPermite cancelacion gratis: "+Sistema.booleanoInfo(this.cancelacionGratis)+"/*******************/");
+        System.out.println("Datos del"+this.nombre+"\n/*******************/\nDirección: "+this.direccion+"\nEstrellas: "+stars+"\nIncluye Desayuno: "+Sistema.booleanoInfo(this.desayuno)+"\nIncluye Parqueo: "+Sistema.booleanoInfo(parqueo)+"\nPermite cancelacion gratis: "+Sistema.booleanoInfo(this.cancelacionGratis)+"\n/*******************/");
     }
     
     public void buscarHabitaciones(){
@@ -134,6 +146,10 @@ public class Hotel extends Hospedaje{
         }
         System.out.println("1.- Individual - 1 persona - "+ind+"\n2.- Doble - 2 personas - "+dob+"\n3.- Familiar - 4 personas -"+fam);
     }
-}
     
-
+    @Override
+    public void mostrarDatosReserva(Reserva r){
+        super.mostrarDatosReserva(r);
+        System.out.println("Hotel:"+this.getNombre()+"\nValor a Pagar: "+r.getCosto());
+    }
+}
