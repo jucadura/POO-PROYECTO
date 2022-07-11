@@ -9,7 +9,7 @@ package Servicios;
  *
  * @author User
  */
-public abstract class Servicio {
+public class Servicio {
     protected String ciudad;
     protected String id;
     protected int puntuacion;
@@ -20,6 +20,15 @@ public abstract class Servicio {
         this.id = id;
         this.puntuacion = puntuacion;
         this.valor = valor;
+    }
+    
+    public void makeID(){
+        double cod= (Math.random()*(1000));
+        System.out.println(cod);
+        this.id= (int)cod+" l";
+    }
+
+    public Servicio() {
     }
 
     public String getCiudad() {
@@ -53,9 +62,11 @@ public abstract class Servicio {
     public void setValor(int valor) {
         this.valor = valor;
     }
-    public abstract void mostrarInfo();
 
-    public void reservar(){
-        //falta
+    
+    public void mostrarDatosReserva(Reserva r){
+        System.out.println("/*****Reserva Generada*****/\n/**************************/");
+        System.out.println("Codigo Reserva: "+r.getCodigo()+"\nCliente: "+r.getCliente().getNombre()+"\nTipo Reserva: "+r.getTipoReserva()+"\nFechas: "+r.getFechaInicio()+"-"+r.getFechaFin()+"\nCiudad"+this.getCiudad());
     }
+    
 }
