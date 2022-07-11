@@ -9,6 +9,15 @@ package Package1;
  *
  * @author User
  */
-public class Admin {
+public class Admin extends Usuario{
     private int totalReservas;
+
+    public Admin(String cedula, String nombre, String apellido, String user, String contraseña, String celular, TipoUsuario tipoU) {
+        super(cedula, nombre, apellido, user, contraseña, celular, tipoU);
+    }
+
+    @Override
+    public void consultarReservas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
