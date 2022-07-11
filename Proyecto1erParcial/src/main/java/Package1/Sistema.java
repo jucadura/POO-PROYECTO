@@ -103,8 +103,7 @@ public class Sistema {
                             String entrada = sc.nextLine();
                             System.out.println("Ingrese fecha de salida(dd-MM-AAAA): ");
                             String salida = sc.nextLine();
-                            int dias = Integer.valueOf(salida.substring(0,1));
-                            Integer.valueOf(entrada.substring(0,1));
+                            int dias = Integer.valueOf(salida.substring(0,1))-Integer.valueOf(entrada.substring(0,1));
                             LocalDate fechaInicio = formatearFecha(entrada);
                             LocalDate fechaFin = formatearFecha(salida);
                              
