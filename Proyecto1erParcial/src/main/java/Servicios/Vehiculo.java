@@ -109,5 +109,10 @@ es manual o automático*/
     public void setTransmision(Transmision transmision) {
         this.transmision = transmision;
     }
+
+    @Override
+    public String toString() {
+        return "marca=" + marca + ", modelo=" + modelo + ", placa=" + placa + ", color=" + color + ", capacidad=" + capacidad + ", estado=" + estado + ", costo=" + costo + ", transmision=" + transmision + '}';
+    }
     
 }
