@@ -11,7 +11,7 @@ import Enum.TipoUsuario;
  *
  * @author User
  */
-public class Usuario {
+public abstract class Usuario {
     /*
     cedula,nombre,apellido,user,contraseña,celular,tipoUsuario
     */
@@ -62,10 +62,7 @@ public class Usuario {
         return tipoU;
     }
     
-    
-    public void consultarReservas(){
-        System.out.println("Reservas");
-    }
+    public abstract void consultarReservas();
 
     @Override
     public String toString() {
