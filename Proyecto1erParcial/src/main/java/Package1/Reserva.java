@@ -16,6 +16,15 @@ public class Reserva {
     private String codigo;
     private Cliente cliente;
     private TipoServicio tipoReserva;
+    private double costo;
+
+    public double getCosto() {
+        return costo;
+    }
+
+    public void setCosto(double costo) {
+        this.costo = costo;
+    }
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
 
@@ -23,7 +32,7 @@ public class Reserva {
         this.cliente = cliente;
     }
 
-    public Reserva(String codigo, Cliente cliente, TipoServicio tipoReserva, LocalDate fechaInicio, LocalDate fechaFin) {
+    public Reserva( String codigo,Cliente cliente, TipoServicio tipoReserva, LocalDate fechaInicio, LocalDate fechaFin) {
         this.codigo = codigo;
         this.cliente = cliente;
         this.tipoReserva = tipoReserva;
@@ -47,9 +56,27 @@ public class Reserva {
         return fechaInicio;
     }
 
+    public void setFechaInicio(LocalDate fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
     public LocalDate getFechaFin() {
         return fechaFin;
     }
-    
-    
+
+    public void setFechaFin(LocalDate fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public void setTipoReserva(TipoServicio tipoReserva) {
+        this.tipoReserva = tipoReserva;
+    }
 }
