@@ -81,7 +81,7 @@ public class Sistema {
         else return "No";
     }
     
-    public static void main(String[] args) {
+   public static void main(String[] args) {
         System.out.println("+++++++++++++++++++++++++++++\n    BIENVENIDO AL SISTEMA\n+++++++++++++++++++++++++++++");
         boolean correcto = false;
         while (correcto == false){
@@ -164,6 +164,29 @@ public class Sistema {
                             break;
                         case 2:
                             System.out.println("");
+                            System.out.println("Ingrese fecha de entrada (dd-MM-AAAA): ");
+                            sc.nextLine();
+                            String entradaTr = sc.nextLine();
+                            String dia1Tr=entradaTr.substring(0,2);
+                            System.out.println("Ingrese fecha de salida(dd-MM-AAAA): ");
+                            String salidaTr = sc.nextLine();
+                            String dia2Tr = salidaTr.substring(0,2);
+                            int diasTr = Integer.valueOf(dia2Tr)-Integer.valueOf(dia1Tr);
+                            LocalDate fechaInicioTR = formatearFecha(entradaTr);
+                            LocalDate fechaFinTr = formatearFecha(salidaTr);
+                            ArrayList<String> vehiculosStrs = LeeFichero("vehiculos.txt");
+                            ArrayList<Vehiculo> vehiculos = new ArrayList<>();
+                            for(int i=1; i<vehiculosStrs.size();i++){
+                                String[] h = vehiculosStrs.get(i).split(",");
+                                Vehiculo v = new Vehiculo(h[0],h[1],h[2],h[3],h[4],Integer.valueOf(h[5]),Estado.valueOf(h[6]),Double.valueOf(h[7]),Transmision.valueOf(h[8]));
+                                vehiculos.add(v);
+                            }
+                            System.out.println("Estos son los vehiculos disponibles: ");
+                                    for (int i=0; i<vehiculos.size();i++){
+                                        System.out.println((i+1)+".- "+vehiculos.get(i).toString());
+                                    }   
+                            
+                            
                             break;
                         case 3:
                             System.out.println("");
@@ -181,4 +204,3 @@ public class Sistema {
         }            
     }
 }
-
