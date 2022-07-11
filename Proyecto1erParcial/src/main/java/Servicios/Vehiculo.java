@@ -26,6 +26,18 @@ es manual o automático*/
     private double costo;
     private Transmision transmision;
 
+    public Vehiculo(String codigo, String marca, String modelo, String placa, String color, int capacidad, Estado estado, double costo, Transmision transmision) {
+        this.codigo = codigo;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.placa = placa;
+        this.color = color;
+        this.capacidad = capacidad;
+        this.estado = estado;
+        this.costo = costo;
+        this.transmision = transmision;
+    }
+
     public String getCodigo() {
         return codigo;
     }
