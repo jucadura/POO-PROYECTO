@@ -11,4 +11,12 @@ package Servicios;
  */
 public class Transporte {
     private Vehiculo vehiculo;
+    
+    public Vehiculo getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
+    }
 }
