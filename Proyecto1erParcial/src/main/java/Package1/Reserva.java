@@ -16,14 +16,14 @@ public class Reserva {
     private String codigo;
     private Cliente cliente;
     private TipoServicio tipoReserva;
-    private Date fechaInicio;
-    private Date fechaFin;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
 
     public Reserva(Cliente cliente) {
         this.cliente = cliente;
     }
 
-    public Reserva(String codigo, Cliente cliente, TipoServicio tipoReserva, Date fechaInicio, Date fechaFin) {
+    public Reserva(String codigo, Cliente cliente, TipoServicio tipoReserva, LocalDate fechaInicio, LocalDate fechaFin) {
         this.codigo = codigo;
         this.cliente = cliente;
         this.tipoReserva = tipoReserva;
@@ -43,11 +43,11 @@ public class Reserva {
         return tipoReserva;
     }
 
-    public Date getFechaInicio() {
+    public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
-    public Date getFechaFin() {
+    public LocalDate getFechaFin() {
         return fechaFin;
     }
     
