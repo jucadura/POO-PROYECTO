@@ -1,0 +1,43 @@
+package Servicios;
+
+/**
+ *
+ * @author JUAN
+ */
+public class Entretenimiento extends Servicio{
+    private int diasRecorrido;
+    private String descripcion;
+    private String paquete;
+
+    public Entretenimiento(String ciudad, String id, int puntuacion, int valor) {
+        super(ciudad, id, puntuacion, valor);
+    }
+    
+
+    public int getDiasRecorrido() {
+        return diasRecorrido;
+    }
+
+    public void setDiasRecorrido(int diasRecorrido) {
+        this.diasRecorrido = diasRecorrido;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getPaquete() {
+        return paquete;
+    }
+
+    public void setPaquete(String paquet) {
+        this.paquete = paquet;
+    }
+    
+    
+    
+}
