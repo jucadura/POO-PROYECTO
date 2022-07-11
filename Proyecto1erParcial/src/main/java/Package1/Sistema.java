@@ -1,16 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Package1;
 
+import Enum.TipoHabitacion;
 import Enum.TipoUsuario;
 import static Package1.ManejoArchivos.LeeFichero;
+import Servicios.Departamento;
+import Servicios.Habitacion;
+import Servicios.Hotel;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 
 /**
@@ -78,7 +75,11 @@ public class Sistema {
         LocalDate resp = LocalDate.of(Integer.valueOf(enteros[2]), Integer.valueOf(enteros[1]),Integer.valueOf(enteros[0]));
         return resp;
     }
-    
+    public static String booleanoInfo(boolean b){
+        if (b)
+            return "Si";
+        else return "No";
+    }
     
     public static void main(String[] args) {
         System.out.println("+++++++++++++++++++++++++++++\n    BIENVENIDO AL SISTEMA\n+++++++++++++++++++++++++++++");
@@ -97,13 +98,15 @@ public class Sistema {
                     opcion=sc.nextInt();
                     switch (opcion){
                         case 1:
-                           System.out.println("/*****RESERVACION*****/\n/*                   */\n/*********************/");
+                            System.out.println("/*****RESERVACION*****/\n/*                   */\n/*********************/");
                             System.out.println("Ingrese fecha de entrada (dd-MM-AAAA): ");
                             sc.nextLine();
                             String entrada = sc.nextLine();
+                            String dia1=entrada.substring(0,2);
                             System.out.println("Ingrese fecha de salida(dd-MM-AAAA): ");
                             String salida = sc.nextLine();
-                            int dias = Integer.valueOf(salida.substring(0,1))-Integer.valueOf(entrada.substring(0,1));
+                            String dia2 = salida.substring(0,2);
+                            int dias = Integer.valueOf(dia2)-Integer.valueOf(dia1);
                             LocalDate fechaInicio = formatearFecha(entrada);
                             LocalDate fechaFin = formatearFecha(salida);
                              
@@ -138,10 +141,37 @@ public class Sistema {
                                     Habitacion habChosen;
                                     if (dispo.isEmpty()==false){
                                          habChosen = dispo.get((int)Math.random()*dispo.size());
-                                        System.out.println("Usted ha elegido una habitacion "+habChosen.getTipo().toString().toLowerCase()+" para el total de "+dias+"noche");
-                                        System.out.println("El costo a pagar es de "+habChosen.getPrecio()+" dolares\n¿Desea reservar?");
+                                        System.out.println("Usted ha elegido una habitacion "+habChosen.getTipo().toString().toLowerCase()+" para el total de "+dias+" noche");
+                                        double valorT = habChosen.getPrecio()*dias;
+                                        System.out.println("El costo a pagar es de "+valorT+" dolares\n¿Desea reservar?");
                                         String resQ= sc.nextLine().toLowerCase();
-                                        if (resQ == "si"){
+                                        if (resQ.equals("si")){
+                                            Reserva res = c.generarReserva(elegido, habChosen);
+                                            res.setCosto(valorT);
+                                            elegido.mostrarDatosReserva(res);
+                                        }
+                                        
+                                    }                                    
+                                    else{
+                                        System.out.println("No hay habitaciones disponibles");  
+                                    }
+                                    
+                                    break;
+                                case 2:
+                                    Departamento depa = new Departamento(3,true,true,fechaInicio,fechaFin);
+                                break;     
+                            }
+                            break;
+                        case 2:
+                            System.out.println("");
+                            break;
+                        case 3:
+                            System.out.println("");
+                            break;
+                        case 4:
+                            System.out.println("***PAGAR RESERVAS***");
+                            System.out.println("");
+                            break;
                             
                             
                         
@@ -151,3 +181,4 @@ public class Sistema {
         }            
     }
 }
+
